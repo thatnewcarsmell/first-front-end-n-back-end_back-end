@@ -147,6 +147,22 @@ exports.seed = function(knex, Promise) {
               hometown_lat: 40.959471,
               hometown_long: 74.125202,
               useless_superpower: 'Can telekinetically move rubbage, but only between two trash recepticles.'
+          },
+          {
+              name: 'Jimmy',
+              fave_animal: 'https://www.zoonewengland.org/media/72328/peregrinefalcon_gallery.jpg',
+              previous_occupation: 'Customer Service Representative',
+              hometown_lat: 38.6270,
+              hometown_long: 90.1994,
+              useless_superpower: 'The ability to fly when you already have a frequent flyer travel rewards membership.'
+          },
+          {
+              name: 'Dane Parke',
+              fave_animal: 'https://media.mnn.com/assets/images/2017/01/sleeping-bear-log.jpg.838x0_q80.jpg',
+              previous_occupation: 'Sous Chef',
+              hometown_lat: 38.1499,
+              hometown_long: 144.3617,
+              useless_superpower: 'Ability to resist the urges of the snack tray, during presentations'
           }
       ])
   })
