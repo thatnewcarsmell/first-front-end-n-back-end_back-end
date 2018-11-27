@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express()
 const parser = require('body-parser')
+const queries = require('./queries')
 const port = process.env.PORT || 3000
 
 
 
 app.get('/', (req, res) => {
-    res.status(200).send('I can still write basic routes.')
+    queries.listAll().then(students => res.send(students))
+    // res.status(200).send('I can still write basic routes.')
 })
 
 app.use((err, req, res, next) => {
