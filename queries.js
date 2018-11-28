@@ -1,6 +1,9 @@
 const database = require('./database-connection')
 
 module.exports = {
+    listIds(){
+        return database('students').select('id')
+    },
     listAll(){
         return database('students')
     },
