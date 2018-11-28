@@ -9,5 +9,8 @@ module.exports = {
     },
     createStudent(newKid){
         return database('students').insert(newKid).returning('*')
+    },
+    editEntry(changedProperty, id){
+        return database('students').where('id', id).update(changedProperty).returning('*')
     }
 }

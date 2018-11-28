@@ -8,8 +8,17 @@ const port = process.env.PORT || 3000
 app.use(parser.json())
 app.use(cors())
 
-app.param('id', (req,res,next,value) => {
+app.param(['id', 'property'], (req,res,next,value) => {
     id = parseInt(value)
+    // let { workaround } = req.body
+    // console.log(workaround)
+    property = req.body
+    // if(req.url.includes('change')){
+    //     switch (req.body[key]) {
+    //         case 'name':
+    //         case 
+    //     }
+    // }
     next()
 })
   
@@ -22,7 +31,13 @@ app.get('/student/:id', (req, res) => {
 })
 
 app.post('/student', (req, res) => {
-    queries.createStudent(req.body).then(students => res.send(students[0]))
+    queries.createStudent(req.body).then(student => res.send(student[0]))
+})
+
+app.patch('/student/change/:id', (req, res) => {
+    // console.log(property)
+    // let property = { req.body }
+    queries.editEntry(property, id).then(student => res.send(student))
 })
 
 app.use((err, req, res, next) => {
