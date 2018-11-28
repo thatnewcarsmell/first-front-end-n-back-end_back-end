@@ -10,15 +10,7 @@ app.use(cors())
 
 app.param(['id', 'property'], (req,res,next,value) => {
     id = parseInt(value)
-    // let { workaround } = req.body
-    // console.log(workaround)
     property = req.body
-    // if(req.url.includes('change')){
-    //     switch (req.body[key]) {
-    //         case 'name':
-    //         case 
-    //     }
-    // }
     next()
 })
   
@@ -26,18 +18,24 @@ app.get('/students', (req, res) => {
     queries.listAll().then(students => res.send(students))
 })
 
-app.get('/student/:id', (req, res) => {
+app.get('/students/:id', (req, res) => {
     queries.getById(id).then(student => res.send(student))
 })
 
-app.post('/student', (req, res) => {
+app.post('/students', (req, res) => {
     queries.createStudent(req.body).then(student => res.send(student[0]))
 })
 
-app.patch('/student/change/:id', (req, res) => {
-    // console.log(property)
-    // let property = { req.body }
+app.patch('/students/:id', (req, res) => {
+    let acceptableKeys = ['name', 'fave_animal', 'previous_occupation', 'hometown_lat', 'hometown_long', 'useless_superpower']
+    for (let keys in property){
+        if (!acceptableKeys.includes(keys)) return res.status(400).send('Try again')
+    }
     queries.editEntry(property, id).then(student => res.send(student))
+})
+
+app.delete('/students/:id', (req, res) => {
+    queries.delete(id).then(deletee => res.send(deletee))
 })
 
 app.use((err, req, res, next) => {

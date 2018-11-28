@@ -12,5 +12,8 @@ module.exports = {
     },
     editEntry(changedProperty, id){
         return database('students').where('id', id).update(changedProperty).returning('*')
+    },
+    delete(id){
+        return database('students').where('id', id).del().returning('*')
     }
 }
