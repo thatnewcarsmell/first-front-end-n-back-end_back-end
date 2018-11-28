@@ -6,26 +6,23 @@ const queries = require('./queries')
 const port = process.env.PORT || 3000
 
 app.use(parser.json())
-// app.use(cors)
+app.use(cors())
 
 app.param('id', (req,res,next,value) => {
     id = parseInt(value)
-    // if(req.url.includes('series')){
-    //   object = seriesDB.find(series => series.id === id)
-    // } 
-    // else if(req.url.includes('characters')){
-    //   object = charactersDB.find(character => character.id === id)
-    // }
     next()
-  })
+})
   
-
 app.get('/students', (req, res) => {
     queries.listAll().then(students => res.send(students))
 })
 
 app.get('/student/:id', (req, res) => {
     queries.getById(id).then(student => res.send(student))
+})
+
+app.post('/student', (req, res) => {
+    queries.createStudent(req.body).then(students => res.send(students[0]))
 })
 
 app.use((err, req, res, next) => {

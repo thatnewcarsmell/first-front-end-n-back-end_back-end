@@ -5,7 +5,9 @@ module.exports = {
         return database('students')
     },
     getById(id){
-        return database('students')
-               .where('id', id)
+        return database('students').where('id', id).first()
+    },
+    createStudent(newKid){
+        return database('students').insert(newKid).returning('*')
     }
 }
