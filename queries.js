@@ -1,22 +1,22 @@
 const database = require('./database-connection')
 
 module.exports = {
-    listStudentsIds(){
-        return database('students').select('id')
+    listMessagesIds(){
+        return database('Messages').select('id')
     },
-    listAllStudents(){
-        return database('students')
+    listAllMessages(){
+        return database('Messages')
     },
-    getStudentById(id){
-        return database('students').where('id', id).first()
+    getMessageById(id){
+        return database('Messages').where('id', id).first()
     },
-    createStudent(newKid){
-        return database('students').insert(newKid).returning('*')
+    createMessage(newMessage){
+        return database('Messages').insert(newMessage).returning('*')
     },
-    editStudent(changedProperty, id){
-        return database('students').where('id', id).update(changedProperty).returning('*')
+    editMessage(changedProperty, id){
+        return database('Messages').where('id', id).update(changedProperty).returning('*')
     },
-    deleteStudent(id){
-        return database('students').where('id', id).del().returning('*')
+    deleteMessage(id){
+        return database('Messages').where('id', id).del().returning('*')
     }
 }
