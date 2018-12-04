@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('messages', message => {
-        message.integer('id')
+        message.increments('id')
         message.string('subject')
         message.boolean('read')
         message.boolean('starred')
